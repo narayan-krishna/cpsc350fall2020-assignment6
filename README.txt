@@ -10,6 +10,9 @@ main.cpp
 Makefile
 core
 test.txt
+kn-assign6report.pdf
+a.out
+assignment6.exe
 
 Errors/Limitations:
 None that I am aware of
