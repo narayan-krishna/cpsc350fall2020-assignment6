@@ -4,6 +4,9 @@
 #include <time.h>
 using namespace std;
 
+//Driver class implements sorting algorithms, and runs them with a timer
+//holds file name, the input numbers in a double array, and the array size
+
 class Driver{
   private:
     string file;
@@ -14,8 +17,14 @@ class Driver{
     // int added;
 
   public:
+    //constructor takes in file name
     Driver(string fileName){
       file = fileName;
+    }
+
+    //destructor
+    ~Driver(){
+      delete numbers;
     }
 
     //processes the file for commands, puts them into an array
@@ -40,6 +49,7 @@ class Driver{
       }
     }
 
+    //print the original test file
     void printOG(){
       cout << "[";
       for(int i = 0; i < numbersSize; ++i){
@@ -48,6 +58,7 @@ class Driver{
       cout << "]" << endl;
     }
 
+    //swap two doubles pointers
     void swap(double* a, double* b){
       double temp = *a;
       *a = *b;
@@ -62,12 +73,6 @@ class Driver{
         sorted[i] = numbers[i];
       }
       quicksort(sorted, 0, numbersSize-1);
-      // cout << "[";
-      // for(int i = 0; i < numbersSize; ++i){
-      //   cout << sorted[i];
-      // }
-      // cout << "]" << endl;
-      // delete sorted;
     }
 
     int partition(double *sorted, int low, int high){
@@ -98,11 +103,6 @@ class Driver{
         sorted[i] = numbers[i];
       }
       mergesort(sorted, 0, numbersSize-1);
-      // cout << "[";
-      // for(int i = 0; i < numbersSize; ++i){
-      //   cout << sorted[i];
-      // }
-      // cout << "]" << endl;
       delete sorted;
     }
 
@@ -171,11 +171,6 @@ class Driver{
           }
         }
       }
-      // cout << "[";
-      // for(int i = 0; i < numbersSize; ++i){
-      //   cout << sorted[i];
-      // }
-      // cout << "]" << endl;
       delete sorted;
     }
 
@@ -197,11 +192,6 @@ class Driver{
         }
         sorted[j] = key;
       }
-      // cout << "[";
-      // for(int i = 0; i < numbersSize; ++i){
-      //   cout << sorted[i];
-      // }
-      // cout << "]" << endl;
       delete sorted;
     }
 
@@ -226,52 +216,82 @@ class Driver{
         break;
       }
     }
-    // cout << "[";
-    // for(int i = 0; i < numbersSize; ++i){
-    //   cout << sorted[i];
-    // }
-    // cout << "]" << endl;
     delete sorted;
   }
 
+//time each function individually with custom output
 
   void timeQuicksort(){
-    clock_t t = clock();
+    cout << "QUICK SORT ... " << endl;
+    clock_t start = clock();
+    cout << " ... start time -> " << start << endl;
     runQuicksort();
-    t = clock() - t;
-    double timeTaken = ((double)t)/CLOCKS_PER_SEC;
-    cout << "QUICKSORT TIME---- " << timeTaken << " seconds" << endl;
+    clock_t end = clock();
+    cout << " ... end time -> " << end << endl;
+    double timeTaken = ((double)(end-start))/CLOCKS_PER_SEC;
+    cout << " ... total execution time -> " << timeTaken << " seconds" << endl;
   }
 
   void timeMergesort(){
-    clock_t t = clock();
+    cout << "MERGE SORT ... " << endl;
+    clock_t start = clock();
+    cout << " ... start time -> " << start << endl;
     runMergesort();
-    t = clock() - t;
-    double timeTaken = ((double)t)/CLOCKS_PER_SEC;
-    cout << "MERGESORT TIME---- " << timeTaken << " seconds" << endl;
+    clock_t end = clock();
+    cout << " ... end time -> " << end << endl;
+    double timeTaken = ((double)(end-start))/CLOCKS_PER_SEC;
+    cout << " ... total execution time -> " << timeTaken << " seconds" << endl;
   }
 
   void timeSelectionsort(){
-    clock_t t = clock();
+    cout << "SELECTION SORT ... " << endl;
+    clock_t start = clock();
+    cout << " ... start time -> " << start << endl;
     selectionsort();
-    t = clock() - t;
-    double timeTaken = ((double)t)/CLOCKS_PER_SEC;
-    cout << "SELECTIONSORT TIME---- " << timeTaken << " seconds" << endl;
+    clock_t end = clock();
+    cout << " ... end time -> " << end << endl;
+    double timeTaken = ((double)(end-start))/CLOCKS_PER_SEC;
+    cout << " ... total execution time -> " << timeTaken << " seconds" << endl;
   }
 
   void timeInsertionsort(){
-    clock_t t = clock();
+    cout << "INSERTION SORT ... " << endl;
+    clock_t start = clock();
+    cout << " ... start time -> " << start << endl;
     insertionsort();
-    t = clock() - t;
-    double timeTaken = ((double)t)/CLOCKS_PER_SEC;
-    cout << "INSERTIONSORT TIME---- " << timeTaken << " seconds" << endl;
+    clock_t end = clock();
+    cout << " ... end time -> " << end << endl;
+    double timeTaken = ((double)(end-start))/CLOCKS_PER_SEC;
+    cout << " ... total execution time -> " << timeTaken << " seconds" << endl;
   }
 
   void timeBubblesort(){
-    clock_t t = clock();
+    cout << "BUBBLE SORT ... " << endl;
+    clock_t start = clock();
+    cout << " ... start time -> " << start << endl;
     bubblesort();
-    t = clock() - t;
-    double timeTaken = ((double)t)/CLOCKS_PER_SEC;
-    cout << "BUBBLESORT TIME---- " << timeTaken << " seconds" << endl;
+    clock_t end = clock();
+    cout << " ... end time -> " << end << endl;
+    double timeTaken = ((double)(end-start))/CLOCKS_PER_SEC;
+    cout << " ... total execution time -> " << timeTaken << " seconds" << endl;
+  }
+
+  //timing everything, adding some output formatting
+
+  void timeAll(){
+    cout << endl;
+    cout << "--------ALGORITHM EXECUTION TIMES (" << numbersSize << " inputs)--------" << endl;
+    cout << endl;
+    timeQuicksort();
+    cout << endl;
+    timeMergesort();
+    cout << endl;
+    timeSelectionsort();
+    cout << endl;
+    timeInsertionsort();
+    cout << endl;
+    timeBubblesort();
+    cout << endl;
+    // cout << "-----------------------------------------" << endl;
   }
 };

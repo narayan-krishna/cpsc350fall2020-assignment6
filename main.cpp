@@ -8,13 +8,10 @@ int main(int argc, char **argv){
     cout << "'./assignment4.exe sequences.txt'" << endl;
   }
   else{
+    //construct driver,proccess, time everythng, delete driver
     Driver *d = new Driver(argv[1]);
     d->processFile();
-    d->timeQuicksort();
-    d->timeMergesort();
-    d->timeSelectionsort();
-    d->timeInsertionsort();
-    d->timeBubblesort();
+    d->timeAll();
     delete d;
   }
 }
