@@ -10,9 +10,11 @@ int main(int argc, char **argv){
   else{
     Driver *d = new Driver(argv[1]);
     d->processFile();
-    d->selectionsort();
-    d->runQuicksort();
-    d->printOG();
+    d->timeQuicksort();
+    d->timeMergesort();
+    d->timeSelectionsort();
+    d->timeInsertionsort();
+    d->timeBubblesort();
     delete d;
   }
 }
